@@ -2,7 +2,6 @@
 const inputText = document.getElementById('input-value');
 const spinner = document.getElementById('spinner')
 const errorDiv = document.getElementById('error')
-const totalBooks = document.getElementById('total-books');
 const parentDiv = document.getElementById('search-result');
 
 // get input value and fetch data
@@ -12,15 +11,13 @@ const searchField = () => {
     // Input Error Handling
     if (inptuValue === "") {
         parentDiv.textContent = '';
-        totalBooks.innerHTML = '';
-        errorDiv.innerText = "Search Field Cannot Be Empty."
+        errorDiv.innerHTML = `<h6 class ='bg-danger text-white rounded p-2 d-inline' >Search Field Cannot Be Empty.</h6>`
         spinner.classList.add("d-none")
         return;
     }
     // Clear 
     errorDiv.innerText = "";
     inputText.value = "";
-    totalBooks.innerHTML = '';
     parentDiv.textContent = '';
     // Get Api 
     fetch(`https://openlibrary.org/search.json?q=${inptuValue}`)
@@ -32,14 +29,11 @@ const searchField = () => {
 const displaySearchResult = books => {
     spinner.classList.add("d-none")
     if (books.numFound === 0) {
-        errorDiv.innerText = 'Books Not Found'
+        errorDiv.innerHTML = `<h6 class ='bg-warning p-2 d-inline rounded text-center' >Books Not Found</h6>`
         return;
     }
-    // Create dynamic div for count total search item 
-    const getBooksNumber = document.createElement('div')
-    getBooksNumber.innerHTML = `<h6 class= "text-dark text-center">Showing ${books.docs.length}, Books Found ${books.numFound}</h5>`
-    totalBooks.appendChild(getBooksNumber);
-    // Get first 30 books details to display website 
+    // Search Result Count
+    errorDiv.innerHTML = `<h6 class= "text-dark d-inline bg-warning p-2 rounded text-center">Showing ${books.docs.length}, Books Found ${books.numFound}.</h6>`
     books.docs.slice(0, 29).forEach((book) => {
         
         // Undefined error handle 
