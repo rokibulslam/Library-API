@@ -13,7 +13,7 @@ const searchField = () => {
     if (inptuValue === "") {
         parentDiv.textContent = '';
         totalBooks.innerHTML = '';
-        errorDiv.innerText = "Search field Cannot be empty."
+        errorDiv.innerText = "Search Field Cannot Be Empty."
         spinner.classList.add("d-none")
         return;
     }
