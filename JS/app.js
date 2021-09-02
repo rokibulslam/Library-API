@@ -11,6 +11,7 @@ const searchField = () => {
     const inptuValue = inputText.value;
     // Input Error Handling
     if (inptuValue === "") {
+        parentDiv.textContent = '';
         errorDiv.innerText = "Search field Cannot be empty."
          spinner.classList.add("d-none")
         return;
