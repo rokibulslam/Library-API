@@ -37,15 +37,16 @@ const displaySearchResult = books => {
     }
     // Create dynamic div for count total search item 
     const getBooksNumber = document.createElement('div')
-    getBooksNumber.innerHTML = `<h6 class= "text-dark text-center">Number of Books Found : ${books.numFound}</h5>`
+    getBooksNumber.innerHTML = `<h6 class= "text-dark text-center">Showing ${books.docs.length}, Books Found ${books.numFound}</h5>`
     totalBooks.appendChild(getBooksNumber);
     // Get first 30 books details to display website 
     books.docs.slice(0, 29).forEach((book) => {
+        
         // Undefined error handle 
         const imgId = book.cover_i === undefined ? '8236407' : book.cover_i;
         const author = book.author_name === undefined ? 'Not Found' : book.author_name;
         const publishedDate = book.first_publish_year === undefined ? 'Not Found' : book.first_publish_year;
-        const publisher = book.publisher[0] === undefined ? 'Not Found' : book.publisher[0];
+        const publisher = book.publisher === undefined ? 'Not Found' : book.publisher;
         // Push dynamic HTML 
         const div = document.createElement('div');
         div.innerHTML = `
