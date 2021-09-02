@@ -1,16 +1,17 @@
 body {
     background-color: bisque;
 }
+.search-result {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+}
 
 /*--------------------------- 
     Dynamic HTML style  
 ---------------------------*/
-.search-result {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
 
-.search-result img {
+.dynamic-result img {
     height: 300px;
     width: 300px;
 }
