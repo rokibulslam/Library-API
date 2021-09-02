@@ -1,0 +1,13 @@
+body {
+    background-color: bisque;
+}
+
+.search-result {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.search-result img {
+    height: 300px;
+    width: 300px;
+}

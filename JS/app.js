@@ -4,6 +4,7 @@ const spinner = document.getElementById('spinner')
 const errorDiv = document.getElementById('error')
 const itemFound = document.getElementById('not-found');
 const parentDiv = document.getElementById('search-result');
+
 // get input value and fetch data
 const searchField = () => {
     spinner.classList.remove("d-none")
@@ -32,24 +33,22 @@ const displaySearchResult = books => {
         errorDiv.innerText = 'Books Not Found'
         return;
     }
-    // itemFound.innerHTML = '';
     // Create dynamic div for count total search item 
     const gotItemNumber = document.createElement('div')
-    gotItemNumber.innerHTML = `<h4 class= "text-white">Number of Books Found : ${books.numFound}</h5>`
+    gotItemNumber.innerHTML = `<h6 class= "text-dark text-center">Number of Books Found : ${books.numFound}</h5>`
     itemFound.appendChild(gotItemNumber);
-    // parentDiv.textContent = '';
     // Get single book details to display website 
     books.docs.forEach((book) => {
         // console.log(book)
         const div = document.createElement('div');
         div.innerHTML = `
-            <div class="card m-3 shadow" style="width: 18rem;">
-                <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" alt="...">
+            <div class="card m-3 shadow-lg p-2" style="width: 18rem;">
+                <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Books Name: ${book.title}</h5>
-                    <h6 class="card-text">Author-Name: ${book.author_name}</h6>
-                    <h6 class="card-text">1st Published: ${book.first_publish_year}</h6>
-                    <h6 class="card-text">Publisher: ${book.publisher}</h6>
+                    <h5 class="card-title">Book Name: ${book.title}</h5>
+                    <p class="card-text m-1"><b>Author-Name:</b> ${book.author_name}</p>
+                    <p class="card-text m-1"><b>1st Published:</b> ${book.first_publish_year}</p>
+                    <p class="card-text m-1"><b>Publisher:</b> ${book.publisher}</p>
 
                 </div>
             </div>
