@@ -45,7 +45,7 @@ const displaySearchResult = books => {
         const imgId = book.cover_i === undefined ? '8236407' : book.cover_i;
         const author = book.author_name === undefined ? 'Not Found' : book.author_name;
         const publishedDate = book.first_publish_year === undefined ? 'Not Found' : book.first_publish_year;
-        const publisher = book.publisher === undefined ? 'Not Found' : book.publisher;
+        const publisher = book.publisher[0] === undefined ? 'Not Found' : book.publisher[0];
         // Push dynamic HTML 
         const div = document.createElement('div');
         div.innerHTML = `
