@@ -2,7 +2,7 @@
 const inputText = document.getElementById('input-value');
 const spinner = document.getElementById('spinner')
 const errorDiv = document.getElementById('error')
-const totalItem = document.getElementById('not-found');
+const totalBooks = document.getElementById('total-books');
 const parentDiv = document.getElementById('search-result');
 
 // get input value and fetch data
@@ -12,7 +12,7 @@ const searchField = () => {
     // Input Error Handling
     if (inptuValue === "") {
         parentDiv.textContent = '';
-        totalItem.innerHTML = '';
+        totalBooks.innerHTML = '';
         errorDiv.innerText = "Search field Cannot be empty."
         spinner.classList.add("d-none")
         return;
@@ -20,7 +20,7 @@ const searchField = () => {
     // Clear 
     errorDiv.innerText = "";
     inputText.value = "";
-    totalItem.innerHTML = '';
+    totalBooks.innerHTML = '';
     parentDiv.textContent = '';
     // Get Api 
     fetch(`https://openlibrary.org/search.json?q=${inptuValue}`)
@@ -36,16 +36,16 @@ const displaySearchResult = books => {
         return;
     }
     // Create dynamic div for count total search item 
-    const getItemNumber = document.createElement('div')
-    getItemNumber.innerHTML = `<h6 class= "text-dark text-center">Number of Books Found : ${books.numFound}</h5>`
-    totalItem.appendChild(getItemNumber);
+    const getBooksNumber = document.createElement('div')
+    getBooksNumber.innerHTML = `<h6 class= "text-dark text-center">Number of Books Found : ${books.numFound}</h5>`
+    totalBooks.appendChild(getBooksNumber);
     // Get first 30 books details to display website 
     books.docs.slice(0, 29).forEach((book) => {
         // Undefined error handle 
         const imgId = book.cover_i === undefined ? '8236407' : book.cover_i;
         const author = book.author_name === undefined ? 'Not Found' : book.author_name;
         const publishedDate = book.first_publish_year === undefined ? 'Not Found' : book.first_publish_year;
-        const publisher = book.publisher[0] === undefined ? 'Not Found' : book.publisher[0];
+        const publisher = book.publisher === undefined ? 'Not Found' : book.publisher;
         // Push dynamic HTML 
         const div = document.createElement('div');
         div.innerHTML = `
